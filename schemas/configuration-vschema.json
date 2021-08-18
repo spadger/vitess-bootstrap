@@ -1,0 +1,11 @@
+{
+  "sharded": false,
+  "tables": {
+    "post_id_seq": {
+      "type": "sequence"
+    },
+    "channel_id_seq": {
+      "type": "sequence"
+    }
+  }
+}

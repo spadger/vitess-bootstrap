@@ -1,0 +1,30 @@
+{
+    "sharded": true,
+    "vindexes": {
+      "hash": {
+        "type": "hash"
+      }
+    },
+    "tables": {
+      "post": {
+        "column_vindexes": [{
+          "column": "channel_id",
+          "name": "hash"
+        }],
+        "auto_increment": {
+          "column": "id",
+          "sequence": "post_id_seq"
+        }
+      },
+      "channel": {
+        "column_vindexes": [{
+          "column": "id",
+          "name": "hash"
+        }],
+        "auto_increment": {
+          "column": "id",
+          "sequence": "channel_id_seq"
+        }
+      }
+    }
+  }

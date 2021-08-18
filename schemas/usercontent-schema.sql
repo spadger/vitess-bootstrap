@@ -1,0 +1,24 @@
+CREATE TABLE post(
+    id BIGINT NOT NULL PRIMARY KEY,
+    created TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    channel_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    text TEXT NOT NULL
+);
+
+CREATE TABLE comment
+(
+    id      BIGINT NOT NULL PRIMARY KEY,
+    created TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    post_id BIGINT       NOT NULL,
+    user_id BIGINT       NOT NULL,
+    text    TEXT         NOT NULL
+);
+
+CREATE TABLE channel
+(
+    id      BIGINT NOT NULL PRIMARY KEY,
+    created TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    name    TEXT         NOT NULL
+);
