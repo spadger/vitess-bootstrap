@@ -95,14 +95,23 @@ By default, the client will be foud at `/usr/local/bin/vtctlclient`
 4. In a new terminal, run the following script.  It will set up vitess support in k8s, and bootstrap some keyspaces for you
 
 ```
-./init.sh &
+source ./init.sh &
 ```
 
 This will:
-* Set up UI access to [vtctld](http://127.0.0.1:15000)
-* Set up UI access to [vtgate](http://127.0.0.1:15001)
-* Set up UI access to a random [vttablet](http://127.0.0.1:15002)
-* Forward port 3306 to vtgate
-* Create a `mysql` alias that will automatically log you into vitess
+* Set up UI access to the following
+  * [vtctld](http://127.0.0.1:15000)
+  * [vtgate](http://127.0.0.1:15001)
+  * [the configuration tablet](http://127.0.0.1:15002)
+  * [usercontent left-shard tablet](http://127.0.0.1:15003)
+  * [usercontent right-shard tablet](http://127.0.0.1:15004)
+
+* Set up the following mysql port mappings:
+  * 3306 - vtgate (password is `user`)
+  * 3316 - configuration tablet (password is `dev`)
+  * 3326 - usercontent left-shard tablet (password is `dev`)
+  * 3336 - usercontent right-shard tablet (password is `dev`)
+
+* Create a `mysql` alias that will automatically log you into vtgate
 * Create a `vtctlclient` alias that points to your new vitess cluster
 * Seed your vitess cluster with a mini schema and vschema

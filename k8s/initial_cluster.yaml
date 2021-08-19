@@ -134,12 +134,7 @@ stringData:
     # Changes during the init db should not make it to the binlog.
     # They could potentially create errant transactions on replicas.
     SET sql_log_bin = 0;
-    # Remove anonymous users.
-    DELETE FROM mysql.user WHERE User = '';
-
-    # Disable remote root access (only allow UNIX socket).
-    DELETE FROM mysql.user WHERE User = 'root' AND Host != 'localhost';
-
+    
     # Remove test database.
     DROP DATABASE IF EXISTS test;
 
@@ -211,6 +206,9 @@ stringData:
     #  ON *.* TO 'orc_client_user'@'%';
     #GRANT SELECT
     #  ON _vt.* TO 'orc_client_user'@'%';
+
+    CREATE USER 'dev'@'%';
+    GRANT ALL PRIVILEGES ON *.* TO 'dev'@'%';
 
     FLUSH PRIVILEGES;
 
