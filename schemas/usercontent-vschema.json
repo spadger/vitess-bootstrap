@@ -26,5 +26,16 @@
           "sequence": "channel_id_seq"
         }
       }
+      ,
+      "comment": {
+        "column_vindexes": [{
+          "column": "id",
+          "name": "hash"
+        }],
+        "auto_increment": {
+          "column": "id",
+          "sequence": "comment_id_seq"
+        }
+      }
     }
   }

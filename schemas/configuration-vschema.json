@@ -6,6 +6,9 @@
     },
     "channel_id_seq": {
       "type": "sequence"
+    },
+    "comment_id_seq": {
+      "type": "sequence"
     }
   }
 }
