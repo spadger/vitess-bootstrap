@@ -9,4 +9,4 @@ vtctlclient ApplySchema -sql="$(cat schemas/configuration-schema.sql)" configura
 vtctlclient ApplySchema -sql="$(cat schemas/usercontent-schema.sql)" usercontent
 
 vtctlclient ApplyVSchema -vschema="$(cat schemas/configuration-vschema.json)" configuration
-vtctlclient ApplyVSchema -vschema="$(cat schemas/usercontent-vschema.json)" usercontent
+vtctlclient ApplyVSchema -vschema="$(cat schemas/initial-usercontent-vschema.json)" usercontent

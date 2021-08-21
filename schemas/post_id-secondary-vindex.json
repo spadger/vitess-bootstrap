@@ -1,12 +1,12 @@
 {
   "sharded": true,
   "vindexes": {
-   "id_post_idx2": {
+   "id_post_idx": {
       "type": "consistent_lookup_unique",
       "params": {
-        "table": "usercontent.id_post_idx2",
+        "table": "usercontent.id_post_idx",
         "from": "post_id",
-        "to": "sharing_key_of_the_parent_channel_id"
+        "to": "sharding_key"
       },
       "owner": "post"
     }
@@ -16,7 +16,7 @@
       "column_vindexes": [
       {
         "column": "id",
-        "name": "id_post_idx2"
+        "name": "id_post_idx"
       }]
     }
   }

@@ -1,0 +1,64 @@
+{
+  "sharded": true,
+  "vindexes": {
+    "hash": {
+      "type": "hash"
+    },
+    "id_post_idx": {
+      "type": "consistent_lookup_unique",
+      "params": {
+        "from": "post_id",
+        "table": "usercontent.id_post_idx",
+        "to": "sharding_key",
+        "write_only": "true"
+      },
+      "owner": "post"
+    }
+  },
+  "tables": {
+    "post": {
+      "column_vindexes": [{
+          "column": "channel_id",
+          "name": "hash"
+        },
+        {
+          "column": "id",
+          "name": "id_post_idx"
+        }
+      ],
+      "auto_increment": {
+        "column": "id",
+        "sequence": "post_id_seq"
+      }
+    },
+    "channel": {
+      "column_vindexes": [{
+          "column": "id",
+          "name": "hash"
+        }],
+      "auto_increment": {
+        "column": "id",
+        "sequence": "channel_id_seq"
+      }
+    },
+    "id_post_idx": {
+      "column_vindexes": [
+        {
+          "column": "post_id",
+          "name": "hash"
+        }
+      ]
+    }
+    ,
+    "comment": {
+      "column_vindexes": [{
+          "column": "id",
+          "name": "hash"
+        }],
+      "auto_increment": {
+        "column": "id",
+        "sequence": "comment_id_seq"
+      }
+    }
+  }
+}
