@@ -48,22 +48,18 @@ watch kubectl get po
 ```
 
 3. Ensure you have the vitess client.  Once you have it, you'll need to add it to your path (if it isn't added automatically):
-
+Ensure you have installed the go sdk to enable you to use `go get`
 ```sh
 go get vitess.io/vitess/go/cmd/vtctlclient
 ```
 
-By default, the client will be foud at `/usr/local/bin/vtctlclient`
+By default, the client will be found at `/usr/local/bin/vtctlclient`
 
-4. In a new terminal, run the following script.  It will set up vitess support in k8s, and bootstrap some keyspaces for you
-
+4. In a new terminal, run the following script to create port mappings to important vitess pods.  It will not terminate until you ctrl+c it (once you have finished with the cluster)
 ```
-source ./init.sh &
-alias vtctlclient="vtctlclient -server=localhost:15999 -logtostderr"
-alias mysql="mysql -h 127.0.0.1 -P 3306 -u user"
+./pf.sh
 ```
-
-This will:
+The script will:
 * Set up UI access to the following
   * [vtctld](http://127.0.0.1:15000)
   * [vtgate](http://127.0.0.1:15001)
@@ -77,6 +73,15 @@ This will:
   * 3326 - usercontent left-shard tablet (password is `dev`)
   * 3336 - usercontent right-shard tablet (password is `dev`)
 
+5. In a new terminal run the following script toIt will set up vitess support in k8s, and bootstrap some keyspaces for you
+
+```
+source ./init.sh &
+alias vtctlclient="vtctlclient -server=localhost:15999 -logtostderr"
+alias mysql="mysql -h 127.0.0.1 -P 3306 -u user"
+```
+
+This will:
 * Create a `mysql` alias that will automatically log you into vtgate
 * Create a `vtctlclient` alias that points to your new vitess cluster
 * Seed your vitess cluster with a mini schema and vschema
